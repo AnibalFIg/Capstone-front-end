@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Anime Blog</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+
+
+      <!--Auth Page-->
+  <div id="landing">
+    <div id="auth-page">
+      <h1 id="header-landing">Yōkoso Burogā! (Welcome Bloggers)</h1>
+      <div id="signup-container">
+        <form id="signup-form" action="#">
+          <h3 style="text-align: center">Sign Up</h3>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="signup-email" />
+            <label class="mdl-textfield__label" for="email">Email</label>
+            <span class="mdl-textfield__error">Only valid emails, please!</span>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="^[a-zA-Z0-9_]*$" id="signup-username" />
+            <label class="mdl-textfield__label" for="username">Username</label>
+            <span class="mdl-textfield__error">Only alphanumeric—and no spaces, please!</span>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" id="signup-password" />
+            <label class="mdl-textfield__label" for="password">Password</label>
+            <span class="mdl-textfield__error">Minimum 8 characters. One letter and one number.</span>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" id="signup-confirmation" />
+            <label class="mdl-textfield__label" for="confirmation">Confirmation</label>
+            <span class="mdl-textfield__error">Must match password</span>
+          </div>
+          <div style="margin: 0 auto; width: 98px;">
+            <input type="submit" value="Sign Up" class="button-auth hvr-bounce-in" id="signup-button">
+          </div>
+        </form>
+      </div>
+      <div id="signin-container">
+        <form id="signin-form" action="#">
+          <div id="signin-container-inner" style="margin-bottom: 147px;">
+            <h3 style="text-align: center">Sign In</h3>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="signin-email" />
+              <label class="mdl-textfield__label" for="email">Email</label>
+              <span class="mdl-textfield__error">Only valid emails, please!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" id="signin-password" />
+              <label class="mdl-textfield__label" for="password">Password</label>
+              <span class="mdl-textfield__error">Minimum 8 characters. One letter and one number.</span>
+            </div>
+          </div>
+          <div style="margin: 0 auto; width: 92px;">
+            <input type="submit" value="Sign In" class="button-auth hvr-bounce-in" id="signin-button">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="auth-feedback"></div>
+  </div>
+
+
+    </body>
+</html>
