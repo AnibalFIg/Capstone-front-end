@@ -1,15 +1,15 @@
 const api = require('./makeBlogApi.js')
 
-const onMakeSurveySubmit = e => {
+const onMakeBlogSubmit = e => {
   e.preventDefault()
   if (checkEmptyFormFields(e.target)) {
     console.error('Please fill out all fields.')
     return
   }
-  const surveyObject = {blog: {
+  const blogObject = {blog: {
     'title': '',
     'description': '',
-    'survey_questions': [ ]
+    'blog_content': [ ]
   }}
   // perform some form validations
 
@@ -19,39 +19,39 @@ const onMakeSurveySubmit = e => {
   // When you get array back, loop through it and add input type to each object
   // **if input type is radio or select, add choices to the object**
   const formData = $(e.target).serializeArray()
-  // start a counter for survey questions array
+  // start a counter for blog questions array
   let i = 0
   console.log(formData)
   formData.forEach(function (e) {
     switch (e.name) {
       case 'title':
-        surveyObject.survey.title = e.value
-        console.log(surveyObject)
+        blogObject.blog.title = e.value
+        console.log(blogObject)
         break
       case 'description':
-        surveyObject.survey.description = e.value
-        console.log(surveyObject)
+        blogObject.blog.description = e.value
+        console.log(blogObject)
         break
-      case 'question':
-        surveyObject.survey.survey_questions[i] = {}
-        surveyObject.survey.survey_questions[i].question = e.value
-        console.log(surveyObject)
+      case 'information':
+        blogObject.blog.blog_content[i] = {}
+        blogObject.blog.blog_content[i].question = e.value
+        console.log(blogObject)
         break
       case 'input_type':
-        surveyObject.survey.survey_questions[i].input_type = e.value
-        surveyObject.survey.survey_questions[i].choices = []
-        console.log(surveyObject)
+        blogObject.blog.blog_content[i].input_type = e.value
+        blogObject.blog.blog_content[i].choices = []
+        console.log(blogObject)
         i++
         break
       case 'choice':
-        surveyObject.survey.survey_questions[i - 1].choices.push(e.value)
-        console.log(surveyObject)
+        blogObject.blog.blog_content[i - 1].choices.push(e.value)
+        console.log(blogObject)
         break
     }
   })
-  // if forms are valid, create a survey object
+  // if forms are valid, create a blog object
   // send off to api
-  api.createSurvey(surveyObject)
+  api.createBlog(blogObject)
     .then(function () {
       onCloseModalClick()
     })
@@ -103,13 +103,13 @@ const onAddChoiceClick = e => {
   let placeholder
   switch (numOptions) {
     case 1:
-      placeholder = 'Pepperoni'
+      placeholder = 'Text'
       break
     case 2:
-      placeholder = 'Anchovies'
+      placeholder = 'Text'
       break
     default:
-      placeholder = 'Hawaiian'
+      placeholder = 'Text'
   }
 
   if ($(e.target).closest('.options').children().length < 4) {
@@ -123,14 +123,14 @@ const onAddChoiceClick = e => {
 /**
  * Removes a question on '+' click
  */
-const onRemoveQuestionClick = e => $(e.target).closest('.question').remove()
+const onRemoveInformationClick = e => $(e.target).closest('.question').remove()
 /**
  * Adds a question on '+' click
  */
-const onAddQuestionClick = () => {
-  $('#new-survey').append(`<div class="question">
-                                <label for="question">Pose a question: </label>
-                                <input type="text" name="question">
+const onAddInformationClick = () => {
+  $('#new-blog').append(`<div class="information">
+                                <label for="information">Provide Some Details: </label>
+                                <input type="text" name="information">
                                 <label for="input_type" style="margin-left: 25px;">Response-type: </label>
                                 <select name="input_type" class="choose-response" style="display: inline">
                                     <optgroup label="desired response-type">
@@ -140,7 +140,7 @@ const onAddQuestionClick = () => {
                                         <option value='checkbox'>choose all that apply</option>
                                     </optgroup>
                                 </select>
-                                <input class="remove-question" type="button" value="-"></input>
+                                <input class="remove-information" type="button" value="-"></input>
                                 <div class="options-super"></div>
                             </div>`)
 }
@@ -149,17 +149,17 @@ const onAddQuestionClick = () => {
  * Resets modal on exit
  */
 const onCloseModalClick = () => {
-  $('#new-survey').html(`<div style="font-size: 16px;height: 35px;text-align: center;">
-                                <label for="title">Survey title: </label>
+  $('#new-blog').html(`<div style="font-size: 16px;height: 35px;text-align: center;">
+                                <label for="title">Blog title: </label>
                                 <input id="new-title" type="text" name="title" placeholder="Pizza Topping Survey!" style="height: 27px;">
                             </div>
                             <div style="font-size: 12px;height: 36px;text-align: center;">
                                 <label for="title">Description: </label>
-                                <input id="new-description" name="description" type="text" placeholder="Let's talk toppings." style="height: 27px; width: 300px; text-align: center">
+                                <input id="new-description" name="description" type="text" placeholder="Let's talk Anime." style="height: 27px; width: 300px; text-align: center">
                             </div>
-                            <div class="question">
-                                <label for="question">Pose a question: </label>
-                                <input name="question" type="text" placeholder="Do you like Hawaiian?">
+                            <div class="information">
+                                <label for="information">Provide Some Information: </label>
+                                <input name="information" type="text" placeholder="What are your thoughts?">
                                 <label for="input-type" style="margin-left: 25px;">Response-type: </label>
                                 <select name="input-type" class="choose-response" style="display: inline">
                                     <optgroup label="desired response-type">
@@ -176,17 +176,17 @@ const onCloseModalClick = () => {
 }
 
 /**
- * Attaches all make-a-survey event listeners
+ * Attaches all make-a-blog event listeners
  */
-const addMakeASurveyEventListeners = () => {
-  // Make-A-Survey event listeners
-  $('.modal-body').on('click', '.add-question', onAddQuestionClick)
-  $('.modal-body').on('click', '.remove-question', onRemoveQuestionClick)
+const addMakeABlogEventListeners = () => {
+  // Make-A-Blog event listeners
+  $('.modal-body').on('click', '.add-information', onAddInformationClick)
+  $('.modal-body').on('click', '.remove-information', onRemoveInformationClick)
   $('.modal-body').on('change', '.choose-response', onResponseTypeChange)
   $('.modal-body').on('click', '.add-choice', onAddChoiceClick)
   $('.modal-body').on('click', '.remove-choice', onRemoveChoiceClick)
-  $('#new-survey').on('submit', onMakeSurveySubmit)
+  $('#new-blog').on('submit', onMakeBlogSubmit)
   $('.modal').on('click', '.close', onCloseModalClick)
 }
 // $('#myModal').modal('hide')
-module.exports = addMakeASurveyEventListeners
+module.exports = addMakeABlogEventListeners
