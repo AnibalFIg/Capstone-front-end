@@ -10,66 +10,158 @@
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+      <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     </head>
     <body>
+      <header id="animeblog">
 
 
-      <!--Auth Page-->
-  <div id="landing">
-    <div id="auth-page">
-      <h1 id="header-landing">Yōkoso Burogā! (Welcome Bloggers)</h1>
-      <div id="signup-container">
-        <form id="signup-form" action="#">
-          <h3 style="text-align: center">Sign Up</h3>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="signup-email" />
-            <label class="mdl-textfield__label" for="email">Email</label>
-            <span class="mdl-textfield__error">Only valid emails, please!</span>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" pattern="^[a-zA-Z0-9_]*$" id="signup-username" />
-            <label class="mdl-textfield__label" for="username">Username</label>
-            <span class="mdl-textfield__error">Only alphanumeric—and no spaces, please!</span>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" id="signup-password" />
-            <label class="mdl-textfield__label" for="password">Password</label>
-            <span class="mdl-textfield__error">Minimum 8 characters. One letter and one number.</span>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" id="signup-confirmation" />
-            <label class="mdl-textfield__label" for="confirmation">Confirmation</label>
-            <span class="mdl-textfield__error">Must match password</span>
-          </div>
-          <div style="margin: 0 auto; width: 98px;">
-            <input type="submit" value="Sign Up" class="button-auth hvr-bounce-in" id="signup-button">
-          </div>
-        </form>
-      </div>
-      <div id="signin-container">
-        <form id="signin-form" action="#">
-          <div id="signin-container-inner" style="margin-bottom: 147px;">
-            <h3 style="text-align: center">Sign In</h3>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="signin-email" />
-              <label class="mdl-textfield__label" for="email">Email</label>
-              <span class="mdl-textfield__error">Only valid emails, please!</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" id="signin-password" />
-              <label class="mdl-textfield__label" for="password">Password</label>
-              <span class="mdl-textfield__error">Minimum 8 characters. One letter and one number.</span>
-            </div>
-          </div>
-          <div style="margin: 0 auto; width: 92px;">
-            <input type="submit" value="Sign In" class="button-auth hvr-bounce-in" id="signin-button">
-          </div>
-        </form>
-      </div>
-    </div>
-    <div id="auth-feedback"></div>
-  </div>
+				<h1>Active Anime Blog </h1>
+				<p>Yōkoso Burogā</p>
 
+			</header>
+
+			<main>
+
+				<div id="userForms">
+
+
+					<!-- sign-up -->
+					<form id="sign-up">
+						<fieldset>
+							<legend>Sign-Up</legend>
+							<input type="text" name="credentials[email]" placeholder="Email">
+							<input type="text" name="nickname" placeholder="Nickname (required)">
+							<input type="password" name="credentials[password]" placeholder="Password">
+							<input type="password" name="credentials[password_confirmation]" placeholder="Comfirm Password">
+							<input type="submit" value="Sign-Up">
+
+						</fieldset>
+					</form>
+
+					<!-- sign-in -->
+					<form id="sign-in">
+							<fieldset>
+								<legend>Already A Member? Login!</legend>
+								<input type="text" name="credentials[email]" placeholder="Email">
+								<!-- <input type="text" name="nickname" placeholder="Nickname (required)"> -->
+								<input type="password" name="credentials[password]" placeholder="Password">
+								<input type="submit" value="Sign-In">
+							</fieldset>
+						</form>
+				</div>
+
+				<!-- hidden on document ready -->
+				<div id="user-online" >
+
+					<div id="sideBar">
+						<ul class="menu">
+							<li class="menu-but"><button type ='button' id="show-auth-modal">Change Password/Logout</button></li>
+              <li class="menu-item">Switch View</li>
+							<li class="menu-but">
+								<label id="change-view" class="switch">
+									<input type="checkbox">
+									<span class="slider round"></span>
+								</label>
+							</li>
+							<!-- <li class="menu-but"><button>blah</button></li> -->
+						</ul>
+
+					</div>
+
+					<!-- animeblog post components -->
+					<div id="content">
+						<div id="top-feed-item">
+              				<div id='recent-post-container'></div>
+							<div id="create-post-container">
+
+									<form id="new-post">
+										<legend>Blog About It!</legend>
+										<input type="text" name="post[title]" type='text' placeholder="Title?">
+                    <input type="text" name="post[studio]" type='text' placeholder="Studio?">
+                    <input type="text" name="post[text]" id="textbox" type='text' placeholder="What's On Your Mind?">
+										<input class='align-self-center' id="create-post-btn"type="submit" value='Confirm'>
+
+									</form>
+							</div>
+
+						</div>
+            <h4>Feed</h4>
+						<div id="feed">
+							<!-- handlebars templating -->
+
+
+						</div>
+					</div>
+
+
+				</div>
+
+
+
+			</main>
+
+			<!-- change pass/logout modal -->
+			<div class='modal fade' id='user-modal'>
+					<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="userModalLabel">User Menu</h5>
+							<button type="button" class="close dismiss" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&otimes;</span>
+							</button>
+						</div>
+						<div id='user-menu' class="modal-body">
+							<div id=user-auth-error class='error'></div>
+							<h2 id="changePassResponse"></h2>
+
+
+							<form id='change-password-form'>
+								<legend>Change Password</legend>
+								<div>
+								<div>
+									<label>Old Password</label>
+									<div id='old-pass-error' class='error'></div>
+								</div>
+									<input class='pass-form' name='passwords[old]' type='password'>
+								</div>
+								<div class='w-100'></div>
+								<div>
+									<div>
+										<label>New Password</label>
+										<div id='new-pass-error' class='error'></div>
+									</div>
+									<input class='pass-form' name='passwords[new]' type='password'>
+								</div>
+								<input id="change-pass" type="submit" value='Confirm'>
+							</form>
+							<button id='launch-change-password' class='btn btn-secondary form-button'>Change Password</button>
+							<button id="sign-out" class='btn btn-secondary form-button'>Sign Out</button>
+						</div>
+						<!-- <div class="modal-footer">
+						<button type="button" class="btn btn-secondary dismiss" data-dismiss="modal">Close</button>
+						</div> -->
+					</div>
+				</div>
+			</div>
+
+      <div class='modal fade' id='update-modal'>
+					<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="userModalLabel">User Menu</h5>
+							<button type="button" class="close dismiss" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&otimes;</span>
+							</button>
+						</div>
+						<div id='update-modal-body' class="modal-body">
+						</div>
+						<!-- <div class="modal-footer">
+						<button type="button" class="btn btn-secondary dismiss" data-dismiss="modal">Close</button>
+						</div> -->
+					</div>
+				</div>
+			</div>
 
     </body>
 </html>

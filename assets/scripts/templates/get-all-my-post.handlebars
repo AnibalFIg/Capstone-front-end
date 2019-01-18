@@ -1,0 +1,25 @@
+{{#if posts}}
+
+{{#each posts as |post|}}
+
+  <section data-id={{post._id}} class="post">
+    <div class="post-header">
+      <h4>{{post.owner.nickname }}</h4>
+    </div>
+    <div class="post-body">
+      <p>{{limit post.createdAt 10}}</p>
+      <h8>{{post.title}}</h8>
+      <h7>{{post.studio}}</h7>
+      <h6>{{post.text}}</h6>
+    </div>
+    <div>
+      <button class='update-post'>Edit</button><button class='delete-post'>Delete</button>
+    </div>
+  </section>
+
+{{/each}}
+
+{{else }}
+  <div>You've never posted!</div>
+
+{{/if}}

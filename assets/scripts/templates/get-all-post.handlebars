@@ -1,0 +1,17 @@
+{{#each posts as |post|}}
+
+  <section data-id={{post._id}} class="post">
+    <div class="post-header">
+      <h4>{{post.owner.nickname}}</h4>
+    </div>
+    <div class="post-body">
+      <p>{{limit post.createdAt 10}}</p>
+      <h8>{{post.title}}</h8>
+      <h7>{{post.studio}}</h7>
+      <h6>{{post.text}}</h6>
+    </div>
+    <div>
+    </div>
+  </section>
+
+{{/each}}

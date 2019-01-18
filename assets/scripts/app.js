@@ -1,17 +1,16 @@
 'use strict'
 
-const addAuthEventListeners = require('./auth/authEvents.js')
-const addMakeABlogEventListeners = require('./blogs/makeABlog/makeABlogEvents.js')
-const addViewABlogEventListeners = require('./blogs/viewABlog/ViewABlogEvents.js')
-const addMyBlogsEventListeners = require('./blogss/myBlogs/myBlogsEvents.js')
+// use require with a reference to bundle the file and use it in this file
+// const example = require('./example')
 
-const addBlogEventListeners = () => {
-  addMakeABlogEventListeners()
-  addViewABlogEventListeners()
-  addMyBlogsEventListeners()
-}
+// use require without a reference to ensure a file is bundled
+// require('./example')
+
+const authEvents = require('./auth/events')
+const postEvents = require('./post/post-event')
 
 $(() => {
-  addAuthEventListeners()
-  addBlogEventListeners()
+  // your JS code goes here
+  authEvents.addEvents()
+  postEvents.addPostEventListeners()
 })

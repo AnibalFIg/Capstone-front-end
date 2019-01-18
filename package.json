@@ -9,8 +9,12 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.1.2",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.12",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.3"
+    "popper.js": "^1.14.3",
+    "toastr": "^2.1.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -33,7 +37,6 @@
     "grunt-sass-lint": "^0.2.4",
     "grunt-shell": "^2.1.0",
     "grunt-webpack": "^3.0.2",
-    "handlebars": "^4.0.11",
     "handlebars-loader": "^1.6.0",
     "load-grunt-config": "^0.19.2",
     "node-libs-browser": "^2.1.0",
